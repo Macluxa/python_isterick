@@ -12,6 +12,6 @@ def app(request):
     return fixture
 
 def test_test_new_group(app):
-    app.login('admin', 'secret')
+    app.session.login(username='admin', password='secret')
     app.create_group(Group(name='test test', header='test test', footer='test test'))
-    app.logout()
+    app.session.logout()

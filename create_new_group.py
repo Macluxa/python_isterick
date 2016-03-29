@@ -18,17 +18,20 @@ class test_new_group(unittest.TestCase):
         self.wd.implicitly_wait(60)
 
     def test_test_new_group(self):
-        wd = self.wd
-        self.open_home_page(wd)
-        self.login(wd, 'admin', 'secret')
-        self.opens_group(wd)
-        self.create_name_new_group(wd, Group(name='test test', header='test test', footer='test test'))
-        self.return_page_list_group(wd)
+        self.login('admin', 'secret')
+        self.create_name_new_group(Group(name='test test', header='test test', footer='test test'))
 
-    def return_page_list_group(self, wd):
+    def loguot(self):
+        wd = self.wd
+        wd.find_elements_by_link_text("Logout").click()
+
+    def return_page_list_group(self):
+        wd = self.wd
         wd.find_elements_by_link_text('group page').click()
 
-    def create_name_new_group(self, wd,   group):
+    def create_name_new_group(self, group):
+        wd = self.wd
+        self.open_home_page(wd)
         wd.find_element_by_class_name('new').click()
         wd.find_element_by_name('group_name').click()
         wd.find_element_by_name('group_name').clear()
@@ -39,12 +42,16 @@ class test_new_group(unittest.TestCase):
         wd.find_element_by_name('group_footer').click()
         wd.find_element_by_name('group_footer').clear()
         wd.find_element_by_name('group_footer').send_keys(group.footer)
+        self.return_page_list_group()
 
 
-    def opens_group(self, wd):
+    def opens_group(self):
+        wd = self.wd
         wd.find_elements_by_link_text('groups').click()
 
-    def login(self, wd, username, password):
+    def login(self, username, password):
+        wd = self.wd
+        self.open_home_page(wd)
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(username)
@@ -55,11 +62,11 @@ class test_new_group(unittest.TestCase):
         wd.find_element_by_name("submit").click()
 
 
-    def open_home_page(self, wd):
+    def open_home_page(self):
+        wd = self.wd
         wd.get('http://localhost/addressbook/')
 
-    def tearDown(self, wd):
-        wd.find_elements_by_link_text("Logout").click()
+    def tearDown(self):
         self.wd.qiut()
 
 if __name__ == '__main__':

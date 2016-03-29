@@ -5,7 +5,7 @@ class GroupHelper:
 
     def create_group(self, group):
         wd = self.app.wd
-        self.open_home_page(wd)
+        self.opens_group()
         wd.find_element_by_class_name('new').click()
         wd.find_element_by_name('group_name').click()
         wd.find_element_by_name('group_name').clear()
@@ -26,3 +26,8 @@ class GroupHelper:
     def return_page_list_group(self):
         wd = self.app.wd
         wd.find_elements_by_link_text('group page').click()
+
+    def delete_first_grou(self):
+        wd = self.app.wd
+        self.opens_group()
+

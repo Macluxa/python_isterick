@@ -1,3 +1,5 @@
-# python_isterick
+#################
+# Python_isterick
 
-My Python traning 
+# My Python traning
+##################

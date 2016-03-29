@@ -45,7 +45,7 @@ class Application:
         wd.find_elements_by_link_text('group page').click()
 
 
-    def loguot(self):
+    def logout(self):
         wd = self.wd
         wd.find_elements_by_link_text("Logout").click()
 
